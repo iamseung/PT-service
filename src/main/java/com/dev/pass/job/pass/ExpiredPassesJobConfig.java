@@ -56,8 +56,8 @@ public class ExpiredPassesJobConfig {
     }
 
     /**
-     * JpaCursorItemReader: JpaPagingItemReader만 지원하다가 Spring 4.3에서 추가되었습니다.
-     * 커서 기법은 페이징 기법보다 보다 높은 성능으로, 데이터 변경에 무관한 무결성 조회가 가능합니다.
+     * JpaCursorItemReader: JpaPagingItemReader만 지원하다가 Spring 4.3에서 추가
+     * 커서 기법은 페이징 기법보다 보다 높은 성능으로, 데이터 변경에 무관한 무결성 조회가 가능
      */
     @Bean
     @StepScope
@@ -65,7 +65,7 @@ public class ExpiredPassesJobConfig {
         return new JpaCursorItemReaderBuilder<PassEntity>()
                 .name("expirePassesItemReader")
                 .entityManagerFactory(entityManagerFactory)
-                // 상태(status)가 진행중이며, 종료일시(endedAt)이 현재 시점보다 과거일 경우 만료 대상이 됩니다.
+                // 상태(status)가 진행중이며, 종료일시(endedAt)이 현재 시점보다 과거일 경우 만료 대상
                 .queryString("select p from PassEntity p where p.status = :status and p.endedAt <= :endedAt")
                 .parameterValues(Map.of("status", PassStatus.PROGRESSED, "endedAt", LocalDateTime.now()))
                 .build();
@@ -81,7 +81,7 @@ public class ExpiredPassesJobConfig {
     }
 
     /**
-     * JpaItemWriter: JPA의 영속성 관리를 위해 EntityManager를 필수로 설정해줘야 합니다.
+     * JpaItemWriter: JPA의 영속성 관리를 위해 EntityManager를 필수로 설정.
      */
     @Bean
     public JpaItemWriter<PassEntity> expirePassesItemWriter() {
