@@ -9,11 +9,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AddPassesJobConfig {
-
+    // @EnableBatchProcessing로 인해 Bean으로 제공된 JobBuilderFactory, StepBuilderFactory
     private final JobBuilderFactory jobBuilderFactory;
-
     private final StepBuilderFactory stepBuilderFactory;
-
     private final AddPassesTasklet addPassesTasklet;
 
     public AddPassesJobConfig(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory, AddPassesTasklet addPassesTasklet) {
