@@ -1,3 +1,7 @@
+#SET port
+server:
+  port: 8081
+
 spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/pass_local?zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
@@ -7,8 +11,14 @@ spring:
     hikari:
       maximum-pool-size: 20
   batch:
+    job:
+      # true => Spring Boot 실행 시 등록되어 있는 Job 실행 옵션
+      enabled: false
     jdbc:
-      # ????
+      # init Script
       initialize-schema: always
   jpa:
     defer-datasource-initialization: true
+kakaotalk:
+  host: https://kapi.kakao.com
+  token: YOUR_ACCESS_TOKEN
